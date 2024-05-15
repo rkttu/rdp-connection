@@ -8,7 +8,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RdpConnection", "RdpConnection\RdpConnection.csproj", "{FF72A7FB-AA7E-4D3F-A5C3-29196E93C5FB}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "RdpConnection", "RdpConnection\RdpConnection.shproj", "{20B976FB-85B5-42FA-911D-50A02C19C90A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RdpConnection.NetStandard11", "RdpConnection.NetStandard11\RdpConnection.NetStandard11.csproj", "{33BAA1F0-9111-4DBD-87D9-04BC95AD5D86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RdpConnection.NetStandard20", "RdpConnection.NetStandard20\RdpConnection.NetStandard20.csproj", "{F24A2B11-76D3-4AE0-8BC6-6783C2B4F90B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,15 +20,24 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FF72A7FB-AA7E-4D3F-A5C3-29196E93C5FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF72A7FB-AA7E-4D3F-A5C3-29196E93C5FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF72A7FB-AA7E-4D3F-A5C3-29196E93C5FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF72A7FB-AA7E-4D3F-A5C3-29196E93C5FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33BAA1F0-9111-4DBD-87D9-04BC95AD5D86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33BAA1F0-9111-4DBD-87D9-04BC95AD5D86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33BAA1F0-9111-4DBD-87D9-04BC95AD5D86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33BAA1F0-9111-4DBD-87D9-04BC95AD5D86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F24A2B11-76D3-4AE0-8BC6-6783C2B4F90B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F24A2B11-76D3-4AE0-8BC6-6783C2B4F90B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F24A2B11-76D3-4AE0-8BC6-6783C2B4F90B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F24A2B11-76D3-4AE0-8BC6-6783C2B4F90B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6D1512BD-895F-4568-AA75-99BAAACC9487}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		RdpConnection\RdpConnection.projitems*{20b976fb-85b5-42fa-911d-50a02c19c90a}*SharedItemsImports = 13
+		RdpConnection\RdpConnection.projitems*{33baa1f0-9111-4dbd-87d9-04bc95ad5d86}*SharedItemsImports = 5
+		RdpConnection\RdpConnection.projitems*{f24a2b11-76d3-4ae0-8bc6-6783c2b4f90b}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal
