@@ -3,9 +3,18 @@ using System.Linq;
 
 namespace RdpConnection
 {
-    // https://learn.microsoft.com/ko-kr/windows/win32/api/winuser/ns-winuser-windowpos
+    /// <summary>
+    /// Represents the position of a window.
+    /// </summary>
+    /// <remarks>
+    /// <see href="https://learn.microsoft.com/ko-kr/windows/win32/api/winuser/ns-winuser-windowpos"/>
+    /// </remarks>
     public sealed class WindowPosition
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WindowPosition"/> class.
+        /// </summary>
+        /// <param name="winposstrExpression">Represents the position of a window as a string. (Handle, Window State, Left, Top, Right, Bottom)</param>
         public WindowPosition(string winposstrExpression)
         {
             if (string.IsNullOrWhiteSpace(winposstrExpression))
@@ -31,13 +40,42 @@ namespace RdpConnection
                 Bottom = bottom;
         }
 
+        /// <summary>
+        /// Handle of the window.
+        /// </summary>
         public int Handle { get; set; } = 0;
-        public SetWindowPositionFlags WindowState { get; set; } = default(SetWindowPositionFlags);
+
+        /// <summary>
+        /// State of the window.
+        /// </summary>
+        public SetWindowPositionFlags WindowState { get; set; } = default;
+
+        /// <summary>
+        /// Left position of the window.
+        /// </summary>
         public int Left { get; set; } = 0;
+
+        /// <summary>
+        /// Top position of the window.
+        /// </summary>
         public int Top { get; set; } = 0;
+
+        /// <summary>
+        /// Right position of the window.
+        /// </summary>
         public int Right { get; set; } = 0;
+
+        /// <summary>
+        /// Bottom position of the window.
+        /// </summary>
         public int Bottom { get; set; } = 0;
 
+        /// <summary>
+        /// Converts the value of this instance to a <see cref="string"/>.
+        /// </summary>
+        /// <returns>
+        /// String representation of the window position. (Handle, Window State, Left, Top, Right, Bottom)
+        /// </returns>
         public override string ToString()
             => $"{Handle},{(int)WindowState},{Left},{Top},{Right},{Bottom}";
     }

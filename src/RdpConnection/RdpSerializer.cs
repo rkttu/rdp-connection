@@ -9,11 +9,34 @@ using System.Text;
 
 namespace RdpConnection
 {
+    /// <summary>
+    /// RDP serializer and deserializer.
+    /// </summary>
     public static class RdpSerializer
     {
+        /// <summary>
+        /// Serializes the specified <see cref="RemoteDesktopPropertiesBase"/> instance as RDP properties.
+        /// </summary>
+        /// <typeparam name="TRdpProperties">
+        /// The type of the RDP properties.
+        /// </typeparam>
+        /// <param name="rdpProperties">
+        /// A RDP properties to serialize.
+        /// </param>
+        /// <param name="throwIfNotValid">
+        /// Whether to throw an exception if the specified <paramref name="rdpProperties"/> is not valid.
+        /// </param>
+        /// <returns>
+        /// List of serialized RDP properties.
+        /// </returns>
+        /// <exception cref="ArgumentException">
+        /// Throws when the specified <paramref name="rdpProperties"/> is not valid.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// Throws when the property does not have the DataMemberAttribute.
+        /// </exception>
         public static IEnumerable<string> Serialize<TRdpProperties>(
-            this TRdpProperties rdpProperties, bool throwIfNotValid = true,
-            Func<byte[], byte[]> rdpProtectedDataHandler = default)
+            this TRdpProperties rdpProperties, bool throwIfNotValid = true)
             where TRdpProperties : RemoteDesktopPropertiesBase
         {
             if (rdpProperties == default)
@@ -41,7 +64,6 @@ namespace RdpConnection
                 var defaultValueAttribute = default(DefaultValueAttribute);
                 var rangeAttribute = default(RangeAttribute);
                 var dataMemberAttribute = default(DataMemberAttribute);
-                var rdpProtectedDataAttribute = default(RdpProtectedDataAttribute);
 
                 var propertyName = eachProperty.Name;
                 var propertyType = eachProperty.PropertyType;
@@ -58,8 +80,6 @@ namespace RdpConnection
                         rangeAttribute = eachCustomAttribute as RangeAttribute;
                     if (eachCustomAttribute is DataMemberAttribute)
                         dataMemberAttribute = eachCustomAttribute as DataMemberAttribute;
-                    if (eachCustomAttribute is RdpProtectedDataAttribute)
-                        rdpProtectedDataAttribute = eachCustomAttribute as RdpProtectedDataAttribute;
                 }
 
                 if (ignoreDataMemberAttribute != null)
@@ -140,10 +160,6 @@ namespace RdpConnection
                 {
                     serializedTypeSign = "b";
                     var byteArray = propertyValue as byte[] ?? new byte[0];
-
-                    if (rdpProtectedDataAttribute != null && rdpProtectedDataHandler != null)
-                        byteArray = rdpProtectedDataHandler.Invoke(byteArray);
-
                     serializedPropertyValue = string.Concat(byteArray.Select(x => $"{x:X2}"));
                 }
                 else
@@ -158,6 +174,27 @@ namespace RdpConnection
             }
         }
 
+        /// <summary>
+        /// Deserializes the specified RDP property lines to the specified type.
+        /// </summary>
+        /// <typeparam name="TRdpProperties">
+        /// The type of the RDP properties.
+        /// </typeparam>
+        /// <param name="rdpPropertyLines">
+        /// Serialized RDP properties.
+        /// </param>
+        /// <param name="throwIfNotValid">
+        /// Throws an exception if the specified <paramref name="rdpPropertyLines"/> is not valid.
+        /// </param>
+        /// <returns>
+        /// TRdpProperties instance.
+        /// </returns>
+        /// <exception cref="InvalidOperationException">
+        /// Throws when the property does not have the DataMemberAttribute.
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// Throws when the specified <paramref name="rdpPropertyLines"/> is not valid.
+        /// </exception>
         public static TRdpProperties Deserialize<TRdpProperties>(IEnumerable<string> rdpPropertyLines, bool throwIfNotValid = true)
             where TRdpProperties : RemoteDesktopPropertiesBase, new()
         {
@@ -294,6 +331,27 @@ namespace RdpConnection
             return instance;
         }
 
+        /// <summary>
+        /// Serializes the specified <see cref="RemoteDesktopUriProperties"/> instance as RDP URI.
+        /// </summary>
+        /// <typeparam name="TRdpUriProperties">
+        /// The type of the RDP URI properties.
+        /// </typeparam>
+        /// <param name="rdpUriProperties">
+        /// RDP URI properties to serialize.
+        /// </param>
+        /// <param name="throwIfNotValid">
+        /// Throws an exception if the specified <paramref name="rdpUriProperties"/> is not valid.
+        /// </param>
+        /// <returns>
+        /// Serialized RDP URI string.
+        /// </returns>
+        /// <exception cref="ArgumentException">
+        /// The specified <paramref name="rdpUriProperties"/> is not valid.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// Throws when the property does not have the DataMemberAttribute.
+        /// </exception>
         public static string SerializeAsRdpUri<TRdpUriProperties>(this TRdpUriProperties rdpUriProperties, bool throwIfNotValid = true)
             where TRdpUriProperties : RemoteDesktopUriProperties
         {

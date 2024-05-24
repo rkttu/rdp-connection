@@ -1,6 +1,15 @@
 # RdpConnection
 
+[![NuGet Version](https://img.shields.io/nuget/v/RdpConnection)](https://www.nuget.org/packages/RdpConnection/) [![GitHub Sponsors](https://img.shields.io/github/sponsors/rkttu)](https://github.com/sponsors/rkttu/)
+
 A library that provides RDP file generation and analysis and RDP URL generation capabilities for Remote Desktop Client, Remote Desktop Service, Azure Virtual Desktop, and Microsoft Terminal Service Client.
+
+## Minimum Requirements
+
+- Requires a platform with .NET Standard 1.1 or later (Except `MicrosoftTerminalServiceClientProperties` class).
+  - Supported .NET Version: .NET Core 1.0+, .NET 5+, .NET Framework 4.5+, Mono 4.6+, UWP 8.0+, Unity 2018.1+
+- Requires a platform with .NET Standard 2.0 or later (`MicrosoftTerminalServiceClientProperties` class), and Windows NT Operating System.
+  - Supported .NET Version: .NET Core 2.0+, .NET 5+, .NET Framework 4.6.1+, Mono 5.4+, UWP 10.0.16299+, Unity 2018.1+
 
 ## How to use
 
@@ -41,6 +50,10 @@ var rdpUri = new RemoteDesktopUriProperties()
 };
 var uri = rdpUri.SerializeAsRdpUri();
 ```
+
+## Source code original author notice
+
+- https://github.com/RedAndBlueEraser/rdp-file-password-encryptor
 
 ## License
 
