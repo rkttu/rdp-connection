@@ -1,6 +1,6 @@
 # RdpConnection
 
-[![NuGet Version](https://img.shields.io/nuget/v/RdpConnection)](https://www.nuget.org/packages/RdpConnection/) [![GitHub Sponsors](https://img.shields.io/github/sponsors/rkttu)](https://github.com/sponsors/rkttu/)
+[![NuGet Version](https://img.shields.io/nuget/v/RdpConnection)](https://www.nuget.org/packages/RdpConnection/) ![Build Status](https://github.com/rkttu/rdp-connection/actions/workflows/dotnet.yml/badge.svg) [![GitHub Sponsors](https://img.shields.io/github/sponsors/rkttu)](https://github.com/sponsors/rkttu/)
 
 A library that provides RDP file generation and analysis and RDP URL generation capabilities for Remote Desktop Client, Remote Desktop Service, Azure Virtual Desktop, and Microsoft Terminal Service Client.
 
